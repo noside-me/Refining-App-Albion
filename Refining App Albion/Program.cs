@@ -8,20 +8,11 @@ namespace Refining_App_Albion
         {
             new AppIntro().Intro();
 
-            var t4Input = new UserInput().TierInput();
-            var t4Specs = new UserInput().SpecializationInput();
-
-            var t5Input = new UserInput().TierInput();
-            var t5Specs = new UserInput().SpecializationInput();
-
-            var t6Input = new UserInput().TierInput();
-            var t6Specs = new UserInput().SpecializationInput();
-
-            var t7Input = new UserInput().TierInput();
-            var t7Specs = new UserInput().SpecializationInput();
-
-            var t8Input = new UserInput().TierInput();
-            var t8Specs = new UserInput().SpecializationInput();
+            var t4Specs = new UserInput().SpecializationInput("T4");
+            var t5Specs = new UserInput().SpecializationInput("T5");
+            var t6Specs = new UserInput().SpecializationInput("T6");
+            var t7Specs = new UserInput().SpecializationInput("T7");
+            var t8Specs = new UserInput().SpecializationInput("T8");
 
             var refinedMat = new UserInput().RefinedMaterial(); //Key for SpecsCalculator
 
@@ -35,18 +26,23 @@ namespace Refining_App_Albion
             Console.WriteLine("Resource return rate is {0}", rrr); //delete later
 
             var specialization = new SpecializationDict();
-            specialization.Specs.Add(t4Input, t4Specs);
-            specialization.Specs.Add(t5Input, t5Specs);
-            specialization.Specs.Add(t6Input, t6Specs);
-            specialization.Specs.Add(t7Input, t7Specs);
-            specialization.Specs.Add(t8Input, t8Specs);
+            //specialization.Specs.Add(t4Input, t4Specs);
+            //specialization.Specs.Add(t5Input, t5Specs);
+            //specialization.Specs.Add(t6Input, t6Specs);
+            //specialization.Specs.Add(t7Input, t7Specs);
+            //specialization.Specs.Add(t8Input, t8Specs);
+            specialization.Specs["T4"] = t4Specs;
+            specialization.Specs["T5"] = t5Specs;
+            specialization.Specs["T6"] = t6Specs;
+            specialization.Specs["T7"] = t7Specs;
+            specialization.Specs["T8"] = t8Specs;
 
             var masteryFCE = new FocusCostEfficiencyCalculator().MasteryCalculator(
-                specialization.Specs[t4Input],
-                specialization.Specs[t5Input],
-                specialization.Specs[t6Input],
-                specialization.Specs[t7Input],
-                specialization.Specs[t8Input]);
+                specialization.Specs["T4"],
+                specialization.Specs["T5"],
+                specialization.Specs["T6"],
+                specialization.Specs["T7"],
+                specialization.Specs["T8"]);
         
             var specsFCE = new FocusCostEfficiencyCalculator().SpecializationCalculator(specialization.Specs[refinedMat]);
 

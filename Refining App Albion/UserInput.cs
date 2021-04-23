@@ -4,33 +4,21 @@ namespace Refining_App_Albion
 {
     public class UserInput : InputManager
     {
-        private string _tier;
         private string _specialization;
         private string _refinedMaterial;
         private string _tierEnchantment;
         private string _currentFocusPoints;
         private string _options;
         private string _refiningLocation;
-        //private string _premiumFocusStatus;
 
-        public string TierInput()
+        public int SpecializationInput(string tierX)
         {
-            Console.Write("Tier: ");
-            _tier = Console.ReadLine().ToUpper();
-            if (_tier == "QUIT")
-                QuitApp();
-            else if (_tier == "RESET")
-                ResetApp();
-            return _tier;
-        }
-
-        public int SpecializationInput()
-        {
-            Console.Write("Specialization: ");
+            
+            Console.Write("Specialization of {0}: ", tierX);
             _specialization = Console.ReadLine().ToUpper();
-            if (Convert.ToString(_specialization) == "QUIT")
+            if (Convert.ToString(_specialization) == "-Q")
                 QuitApp();
-            else if (Convert.ToString(_specialization) == "RESET")
+            else if (Convert.ToString(_specialization) == "-R")
                 ResetApp();
             Console.WriteLine("");
             return Convert.ToInt32(_specialization);
@@ -40,9 +28,9 @@ namespace Refining_App_Albion
         {
             Console.Write("Tier to refine: ");
             _refinedMaterial = Console.ReadLine().ToUpper();
-            if (_refinedMaterial == "QUIT")
+            if (_refinedMaterial == "-Q")
                 QuitApp();
-            else if (_refinedMaterial == "RESET")
+            else if (_refinedMaterial == "-R")
                 ResetApp();
             Console.WriteLine("");
             return _refinedMaterial;
@@ -52,9 +40,9 @@ namespace Refining_App_Albion
         {
             Console.Write("Tier and enchantment: ");
             _tierEnchantment = Console.ReadLine().ToUpper();
-            if (_tierEnchantment == "QUIT")
+            if (_tierEnchantment == "-Q")
                 QuitApp();
-            else if (_tierEnchantment == "RESET")
+            else if (_tierEnchantment == "-R")
                 ResetApp();
             Console.WriteLine("");
             return _tierEnchantment;
@@ -64,9 +52,9 @@ namespace Refining_App_Albion
         {
             Console.Write("Your current focus points: ");
             _currentFocusPoints = Console.ReadLine().ToUpper();
-            if (_currentFocusPoints == "QUIT")
+            if (_currentFocusPoints == "-Q")
                 QuitApp();
-            else if (_currentFocusPoints == "RESET")
+            else if (_currentFocusPoints == "-R")
                 ResetApp();
             Console.WriteLine("");
             return Convert.ToInt32(_currentFocusPoints);
@@ -83,9 +71,9 @@ For Black Zone HO, type BZ.
 
 Type here: ");
             _refiningLocation = Console.ReadLine().ToUpper();
-            if (_refiningLocation == "QUIT")
+            if (_refiningLocation == "-Q")
                 QuitApp();
-            else if (_refiningLocation == "RESET")
+            else if (_refiningLocation == "-R")
                 ResetApp();
             Console.WriteLine("");
             return _refiningLocation;
@@ -96,25 +84,13 @@ Type here: ");
             Console.WriteLine("");
             Console.Write("Save/Reset/Quit? ");
             _options = Console.ReadLine().ToUpper();
-            if (_options == "QUIT")
+            if (_options == "-Q")
                 QuitApp();
-            else if (_options == "RESET")
+            else if (_options == "-R")
                 ResetApp();
             //else if (_options == "SAVE")
             //    Save();
             Console.WriteLine("");
         }
-
-        //public string PremiumFocusStatus()
-        //{
-        //    Console.Write("Refine with focus or without focus, Y/N? ");
-        //    _premiumFocusStatus = Console.ReadLine().ToUpper();
-        //    if (_premiumFocusStatus == "QUIT")
-        //        QuitApp();
-        //    else if (_premiumFocusStatus == "RESET")
-        //        ResetApp();
-        //    Console.WriteLine("");
-        //    return _premiumFocusStatus;
-        //}
     }
 }
