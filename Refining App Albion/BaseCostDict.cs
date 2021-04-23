@@ -2,11 +2,11 @@
 
 namespace Refining_App_Albion
 {
-    public class BaseCost
+    public class BaseCostDict
     {
         private readonly Dictionary<string, int> _baseCost;
 
-        public BaseCost()
+        public BaseCostDict()
         {
             _baseCost = new Dictionary<string, int>()
             {

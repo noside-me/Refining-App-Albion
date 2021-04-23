@@ -16,11 +16,10 @@ namespace Refining_App_Albion
             
             Console.Write("Specialization of {0}: ", tierX);
             _specialization = Console.ReadLine().ToUpper();
-            if (Convert.ToString(_specialization) == "-Q")
-                QuitApp();
-            else if (Convert.ToString(_specialization) == "-R")
-                ResetApp();
+
+            Option(_specialization);
             Console.WriteLine("");
+
             return Convert.ToInt32(_specialization);
         }
 
@@ -28,11 +27,10 @@ namespace Refining_App_Albion
         {
             Console.Write("Tier to refine: ");
             _refinedMaterial = Console.ReadLine().ToUpper();
-            if (_refinedMaterial == "-Q")
-                QuitApp();
-            else if (_refinedMaterial == "-R")
-                ResetApp();
+
+            Option(_refinedMaterial);
             Console.WriteLine("");
+
             return _refinedMaterial;
         }
 
@@ -40,11 +38,10 @@ namespace Refining_App_Albion
         {
             Console.Write("Tier and enchantment: ");
             _tierEnchantment = Console.ReadLine().ToUpper();
-            if (_tierEnchantment == "-Q")
-                QuitApp();
-            else if (_tierEnchantment == "-R")
-                ResetApp();
+
+            Option(_tierEnchantment);
             Console.WriteLine("");
+
             return _tierEnchantment;
         }
 
@@ -52,11 +49,10 @@ namespace Refining_App_Albion
         {
             Console.Write("Your current focus points: ");
             _currentFocusPoints = Console.ReadLine().ToUpper();
-            if (_currentFocusPoints == "-Q")
-                QuitApp();
-            else if (_currentFocusPoints == "-R")
-                ResetApp();
+
+            Option(_currentFocusPoints);
             Console.WriteLine("");
+
             return Convert.ToInt32(_currentFocusPoints);
         }
 
@@ -71,26 +67,21 @@ For Black Zone HO, type BZ.
 
 Type here: ");
             _refiningLocation = Console.ReadLine().ToUpper();
-            if (_refiningLocation == "-Q")
-                QuitApp();
-            else if (_refiningLocation == "-R")
-                ResetApp();
+
+            Option(_refiningLocation);
             Console.WriteLine("");
+
             return _refiningLocation;
         }
 
-        public void Option()
+        public void Option(string option)
         {
-            Console.WriteLine("");
-            Console.Write("Save/Reset/Quit? ");
-            _options = Console.ReadLine().ToUpper();
-            if (_options == "-Q")
+            if ("-Q" == option)
                 QuitApp();
-            else if (_options == "-R")
+            else if ("-R" == option)
                 ResetApp();
-            //else if (_options == "SAVE")
-            //    Save();
-            Console.WriteLine("");
+            else
+                return;
         }
     }
 }

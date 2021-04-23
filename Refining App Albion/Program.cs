@@ -26,11 +26,6 @@ namespace Refining_App_Albion
             Console.WriteLine("Resource return rate is {0}", rrr); //delete later
 
             var specialization = new SpecializationDict();
-            //specialization.Specs.Add(t4Input, t4Specs);
-            //specialization.Specs.Add(t5Input, t5Specs);
-            //specialization.Specs.Add(t6Input, t6Specs);
-            //specialization.Specs.Add(t7Input, t7Specs);
-            //specialization.Specs.Add(t8Input, t8Specs);
             specialization.Specs["T4"] = t4Specs;
             specialization.Specs["T5"] = t5Specs;
             specialization.Specs["T6"] = t6Specs;
@@ -49,7 +44,7 @@ namespace Refining_App_Albion
             var totalFocusEffCost = new FocusCostEfficiencyCalculator().TotalFocusEffCalc(masteryFCE, specsFCE);
             Console.WriteLine("Total Focus Cost Efficiency: " + totalFocusEffCost); // delete later
 
-            var baseCost = new BaseCost()[tierEnchantment];
+            var baseCost = new BaseCostDict()[tierEnchantment];
             Console.WriteLine("Base cost: {0} of tier.X: {1}", baseCost, tierEnchantment); // delete later
 
             var focusCost = new FocusCostCalculator().FocusCostCalculate(baseCost, totalFocusEffCost);
@@ -64,7 +59,7 @@ namespace Refining_App_Albion
             var refinedMaterials = new EstimateBuyUnitsRefined().RefinedMaterial(refinedMat, estimateRawMaterial);
             Console.WriteLine("Low tier refined materials needed: {0}", refinedMaterials); //change refinedMaterials background color
 
-            new UserInput().Option(); //lastline of code.
+            /*new UserInput().Option();*/ //lastline of code.
 
             var textfile = new InputManager();
             textfile.Save(Convert.ToString(estimateRawMaterial),Convert.ToString(refinedMaterials));
