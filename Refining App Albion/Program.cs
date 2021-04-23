@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using System.Net.Http;
-using System.Xml;
 
 namespace Refining_App_Albion
 {
@@ -9,7 +6,7 @@ namespace Refining_App_Albion
     {
         static void Main(string[] args)
         {
-            new AppIntro().Intro();        
+            new AppIntro().Intro();
 
             var t4Input = new UserInput().TierInput();
             var t4Specs = new UserInput().SpecializationInput();
@@ -32,6 +29,11 @@ namespace Refining_App_Albion
 
             var currentFocusPoints = new UserInput().CurrentFocusPoints();
 
+            var refiningLocation = new UserInput().RefiningLocation();
+           
+            var rrr = new ResourceReturnRate().BonusRate(refiningLocation);
+            Console.WriteLine("Resource return rate is {0}", rrr); //delete later
+
             var specialization = new SpecializationDict();
             specialization.Specs.Add(t4Input, t4Specs);
             specialization.Specs.Add(t5Input, t5Specs);
@@ -39,17 +41,16 @@ namespace Refining_App_Albion
             specialization.Specs.Add(t7Input, t7Specs);
             specialization.Specs.Add(t8Input, t8Specs);
 
-            var focusCostEfficiency = new FocusCostEfficiencyCalculator();
-            var masteryFCE = focusCostEfficiency.MasteryCalculator(
-                specialization.Specs[t4Input], 
-                specialization.Specs[t5Input], 
+            var masteryFCE = new FocusCostEfficiencyCalculator().MasteryCalculator(
+                specialization.Specs[t4Input],
+                specialization.Specs[t5Input],
                 specialization.Specs[t6Input],
                 specialization.Specs[t7Input],
                 specialization.Specs[t8Input]);
+        
+            var specsFCE = new FocusCostEfficiencyCalculator().SpecializationCalculator(specialization.Specs[refinedMat]);
 
-            var specsFCE = focusCostEfficiency.SpecializationCalculator(specialization.Specs[refinedMat]);
-
-            var totalFocusEffCost = focusCostEfficiency.TotalFocusEffCalc(masteryFCE, specsFCE);
+            var totalFocusEffCost = new FocusCostEfficiencyCalculator().TotalFocusEffCalc(masteryFCE, specsFCE);
             Console.WriteLine("Total Focus Cost Efficiency: " + totalFocusEffCost); // delete later
 
             var baseCost = new BaseCost()[tierEnchantment];
@@ -61,7 +62,16 @@ namespace Refining_App_Albion
             var ifuCalculate = new InstancedPerFocusCalculator().IFUCalculate(currentFocusPoints, focusCost);
             Console.WriteLine("Instanced per focus used: " + ifuCalculate); //delete later
 
-            new UserInput().Option();
+            var estimateRawMaterial = new EstimateBuyUnitsRaw().RawMaterial(ifuCalculate, rrr);
+            Console.WriteLine("Your target estimate of raw material is {0}", estimateRawMaterial); //change estimateRawMaterials background color
+
+            var refinedMaterials = new EstimateBuyUnitsRefined().RefinedMaterial(refinedMat, estimateRawMaterial);
+            Console.WriteLine("Low tier refined materials needed: {0}", refinedMaterials); //change refinedMaterials background color
+
+            new UserInput().Option(); //lastline of code.
+
+            var textfile = new InputManager();
+            textfile.Save(Convert.ToString(estimateRawMaterial),Convert.ToString(refinedMaterials));
         }
     }
 }
