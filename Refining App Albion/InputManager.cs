@@ -14,6 +14,7 @@ namespace Refining_App_Albion
             var refinedMatString = @"Low tier refined materials needed: ";
             var textFile = new string[2] { rawMatString + text1, refinedMatString + text2};
             File.WriteAllLines(path, textFile);
+            QuitApp();
         }
 
         public void ResetApp()

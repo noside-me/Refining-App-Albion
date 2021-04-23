@@ -59,10 +59,6 @@ namespace Refining_App_Albion
             var refinedMaterials = new EstimateBuyUnitsRefined().RefinedMaterial(refinedMat, estimateRawMaterial);
             Console.WriteLine("Low tier refined materials needed: {0}", refinedMaterials); //change refinedMaterials background color
 
-            /*new UserInput().Option();*/ //lastline of code.
-
-            var textfile = new InputManager();
-            textfile.Save(Convert.ToString(estimateRawMaterial),Convert.ToString(refinedMaterials));
         }
     }
 }

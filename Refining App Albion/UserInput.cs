@@ -8,7 +8,6 @@ namespace Refining_App_Albion
         private string _refinedMaterial;
         private string _tierEnchantment;
         private string _currentFocusPoints;
-        private string _options;
         private string _refiningLocation;
 
         public int SpecializationInput(string tierX)
