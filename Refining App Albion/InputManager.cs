@@ -2,19 +2,49 @@
 using System.Threading;
 using System.Diagnostics;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Refining_App_Albion
 {
     public class InputManager
     {
-        public void Save(string text1, string text2)
+        private string _dirParam = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), @"Refining App\RefineOutput.txt");
+        private readonly string _intro = @"=============
+Legend:
+Specialization: Input your current specs starting from t4-t8;
+-s = Save your data to a text file;
+-r = Restart at the beginning of data input;
+-q = Terminate the app;
+-h = Help info;
+=============
+";
+
+        //public void Logger(string rawMaterial, double rawMatInt, double refinedMatInt)
+        //{
+        //    var tier = new Dictionary<string, string>()
+        //    {
+        //        {"T4","T3"},
+        //        {"T5","T4"},
+        //        {"T6","T5"},
+        //        {"T7","T6"},
+        //        {"T8","T7"},
+        //    };
+
+        //}
+
+        public void Intro()
         {
-            var path = @"C:\testfile\Output.txt";
-            var rawMatString = @"Your targer estimate of raw materials is: ";
-            var refinedMatString = @"Low tier refined materials needed: ";
-            var textFile = new string[2] { rawMatString + text1, refinedMatString + text2};
-            File.WriteAllLines(path, textFile);
-            QuitApp();
+            Console.WriteLine(_intro);
+        }
+
+        public void Save()
+        {
+            var fParameter = new FileStream(_dirParam, FileMode.Create, FileAccess.Write);
+            var m_WriterParameter = new StreamWriter(fParameter);
+            m_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
+            m_WriterParameter.Write("this is the saved message. part 2");
+            m_WriterParameter.Flush();
+            m_WriterParameter.Close();
         }
 
         public void ResetApp()
@@ -25,7 +55,7 @@ namespace Refining_App_Albion
 
         public void QuitApp()
         {
-            Thread.Sleep(0000);
+            Thread.Sleep(10000);
             Environment.Exit(0);
         }
     }

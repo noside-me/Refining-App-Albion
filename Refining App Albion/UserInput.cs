@@ -9,6 +9,7 @@ namespace Refining_App_Albion
         private string _tierEnchantment;
         private string _currentFocusPoints;
         private string _refiningLocation;
+        private string _optionEvent;
 
         public int SpecializationInput(string tierX)
         {
@@ -59,7 +60,7 @@ namespace Refining_App_Albion
         {
             Console.Write(@"Refining Location.
 For Royal City with Bonus, type RCB.
-For Royal City without Bonus, type RC.
+For Royal City without Bonus, type RB.
 For Royal Island with Bonus, type RIB.
 For Royal Island without Bonus, type RI.
 For Black Zone HO, type BZ.
@@ -79,8 +80,18 @@ Type here: ");
                 QuitApp();
             else if ("-R" == option)
                 ResetApp();
+            else if ("-S" == option)
+                Save();
             else
                 return;
+        }
+
+        public void OptionEvent()
+        {
+            Console.Write("Save/Reset/Quit? ");
+            _optionEvent = Console.ReadLine().ToUpper();
+            Option(_optionEvent);
+
         }
     }
 }
