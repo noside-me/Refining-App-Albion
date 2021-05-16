@@ -9,6 +9,7 @@ namespace Refining_App_Albion
     public class InputManager
     {
         private string _dirParam = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), @"Refining App\RefineOutput.txt");
+        private string _param = Path.Combine(AppDomain.CurrentDomain.FriendlyName, @"Refining App\RefineOutput.txt");
         private readonly string _intro = @"=============
 Legend:
 Specialization: Input your current specs starting from t4-t8;
@@ -42,7 +43,7 @@ Specialization: Input your current specs starting from t4-t8;
             var fParameter = new FileStream(_dirParam, FileMode.Create, FileAccess.Write);
             var m_WriterParameter = new StreamWriter(fParameter);
             m_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
-            m_WriterParameter.Write("this is the saved message. part 2");
+            m_WriterParameter.Write("this is the saved message.");
             m_WriterParameter.Flush();
             m_WriterParameter.Close();
         }

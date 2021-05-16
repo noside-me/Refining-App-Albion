@@ -2,7 +2,6 @@
 
 namespace Refining_App_Albion
 {
-
     class Program
     {
         static void Main(string[] args)

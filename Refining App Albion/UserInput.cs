@@ -80,8 +80,6 @@ Type here: ");
                 QuitApp();
             else if ("-R" == option)
                 ResetApp();
-            else if ("-S" == option)
-                Save();
             else
                 return;
         }
